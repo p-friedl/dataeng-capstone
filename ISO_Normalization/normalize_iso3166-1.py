@@ -47,7 +47,7 @@ def normalize(location):
 csv_input_path = './ISO_source_files/iso3166-1_country_codes.csv'
 csv_output_path = './ISO_out/iso3166-1_normalized.csv'
 # read csv file
-df = pd.read_csv(csv_input_path)
+df = pd.read_csv(csv_input_path, keep_default_na=False)
 # normalize location name and add to dataframe
 merged_df = df.merge(df['English short name'].apply(normalize),
                      left_index=True, right_index=True)
