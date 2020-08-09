@@ -35,7 +35,7 @@ def normalize(location):
             lat = 0.0
             long = 0.0
     else:
-        norm_location = "Not results found"
+        norm_location = "No results found"
         lat = 0.0
         long = 0.0
 
