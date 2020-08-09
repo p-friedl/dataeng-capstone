@@ -151,7 +151,7 @@ Column|Description
 ### Mobility
 
 # ETL & Architecture
-![Data Sources Staging Tables](data_sources.png)
+![Data Sources Staging Tables](./drawings/data_sources.png)
 
 # Conclusion
 To be fulfilled:
