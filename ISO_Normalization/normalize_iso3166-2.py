@@ -27,7 +27,7 @@ def normalize(location):
 
     # create googlemaps client - enter your API key
     # info: https://developers.google.com/maps/documentation/geocoding/get-api-key
-    gmaps = googlemaps.Client(key='ENTER YOUR API KEY HERE')
+    gmaps = googlemaps.Client(key='ENTER YOUR API CODE HERE')
     # get geocode result
     geocode_result = gmaps.geocode(location)
 
@@ -45,20 +45,40 @@ def normalize(location):
             if ('administrative_area_level_1' in element['types']
                 or 'locality' in element['types']
                 or 'administrative_area_level_2' in element['types']
+                or 'administrative_area_level_3' in element['types']
+                or 'sublocality' in element['types']
+                or 'establishment' in element['types']
+                or 'colloquial_area' in element['types']
+                or 'neighborhood' in element['types']
                 ):
-                # extract normalized location name
-                for component in element['address_components']:
-                    if ('administrative_area_level_1' in component['types']
-                        or 'administrative_area_level_2' in component['types']
-                        ):
-                        norm_location = component['long_name']
-                        # extract coords
-                        lat = element['geometry']['location']['lat']
-                        long = element['geometry']['location']['lng']
-                        # extract place_id
-                        place_id = element['place_id']
-                        # found result
-                        result_found = True
+                # check if there are address_components
+                if len(element['address_components']) > 0:
+                    # extract normalized location name
+                    for component in element['address_components']:
+                        if ('administrative_area_level_1' in component['types']
+                            or 'administrative_area_level_2' in component['types']
+                            or 'locality' in component['types']
+                            or 'establishment' in component['types']
+                            or 'colloquial_area' in component['types']
+                            ):
+                            norm_location = component['long_name']
+                            # extract coords
+                            lat = element['geometry']['location']['lat']
+                            long = element['geometry']['location']['lng']
+                            # extract place_id
+                            place_id = element['place_id']
+                            # found result
+                            result_found = True
+                else:
+                    norm_location = element['formatted_address']
+                    # extract coords
+                    lat = element['geometry']['location']['lat']
+                    long = element['geometry']['location']['lng']
+                    # extract place_id
+                    place_id = element['place_id']
+                    # found result
+                    result_found = True
+
     # handle cases without result
     if not result_found:
         norm_location = "No results found"
@@ -73,8 +93,8 @@ def normalize(location):
 
 # config - set csv paths
 iso_ref_input_path = './ISO_out/iso3166-1_normalized.csv'
-csv_input_path = './ISO_source_files/IP2LOCATION-ISO3166-2.CSV'
-csv_output_path = './ISO_out/iso3166-2_normalized.csv'
+csv_input_path = './ISO_source_files/iso3166-2_no_results_second_run.csv'
+csv_output_path = './ISO_out/iso3166-2_normalized_second_run.csv'
 
 # read csv file
 iso_ref = pd.read_csv(iso_ref_input_path, keep_default_na=False)
