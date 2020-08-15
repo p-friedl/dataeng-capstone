@@ -91,10 +91,11 @@ def normalize(location):
                       'longitude': long,
                       'place_id': place_id})
 
+
 # config - set csv paths
 iso_ref_input_path = './ISO_out/iso3166-1_normalized.csv'
-csv_input_path = './ISO_source_files/iso3166-2_no_results_second_run.csv'
-csv_output_path = './ISO_out/iso3166-2_normalized_second_run.csv'
+csv_input_path = './ISO_source_files/IP2LOCATION-ISO3166-2.CSV'
+csv_output_path = './ISO_out/iso3166-2_normalized.csv'
 
 # read csv file
 iso_ref = pd.read_csv(iso_ref_input_path, keep_default_na=False)
