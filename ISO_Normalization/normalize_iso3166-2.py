@@ -59,7 +59,7 @@ def normalize(location):
                         place_id = element['place_id']
                         # found result
                         result_found = True
-
+    # handle cases without result
     if not result_found:
         norm_location = "No results found"
         lat = 0.0
