@@ -154,9 +154,12 @@ Column|Description
 
 ## Prerequisite: Geolocation Normalization
 In order to combine as much of the final data as possible based on location (country, region, city..) it is needed to have unique identifiers. Unfortunately not all source data tables are using the same standards like ISO or FIPS. Additionally the location names are not fully matching due to different notation or languages. To solve that problem I decided to introduce my own Reference Tables for the ISO Standards 3166-1 and 3166-2 which cover a wide range of countries and regions. To ensure a common naming and notation of location names I built a separate small ETL pipeline using the Google Maps Geocoding API:
+
 ![Geolocation Normalization Flow](./drawings/geocode_normalize_flow.png)
+
 First the ISO-3166-1 Reference Table (Source: Wikipedia) got normalized by using each value of the "Enlish Short Name" column as input for the Google Maps Geocoding API. The API response got used to enrich the Reference Table with a normalized country name and with coordinates. 
 The normalization of the ISO-3166-2 Table needed additionals steps. To ensure the Geocoding API delivers meaningful results it was not sufficient to use the location name (subdivision_name column) as the could be matches in different countries. To avoid this first a lookup of the country name based on the country_code column with the help of the already normalized ISO-3166-1 Reference Table was applied. Additionally the subdivision_name and the country name got combined in a new column which was used as input for the Geocoding API. The API response again got used to enrich the Reference Table with a normalized location name and with coordinates. As the source table contains roundabout 150 entries without a reference ID for the location this time also the place_id from the API response got used to ensure a complete unique ID coverage. 
+
 ![Geolocation Normalization Tables](./drawings/geocode_normalize_tables.png)
 
 ## Data Sources
