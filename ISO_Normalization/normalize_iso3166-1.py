@@ -1,8 +1,10 @@
 import googlemaps
 import pandas as pd
 import time
+import configparser
 
-def normalize(location):
+
+def normalize(location, key):
     """
     Normalize location input based on Google Maps Geocode API.
     """
@@ -12,7 +14,7 @@ def normalize(location):
 
     # create googlemaps client - enter your API key
     # info: https://developers.google.com/maps/documentation/geocoding/get-api-key
-    gmaps = googlemaps.Client(key='ENTER YOUR API KEY HERE')
+    gmaps = googlemaps.Client(key=key)
     # get geocode result
     geocode_result = gmaps.geocode(location)
 
@@ -43,13 +45,27 @@ def normalize(location):
                       'latitude': lat,
                       'longitude': long})
 
-# config - set csv paths
-csv_input_path = './ISO_source_files/iso3166-1_country_codes.csv'
-csv_output_path = './ISO_out/iso3166-1_normalized.csv'
-# read csv file
-df = pd.read_csv(csv_input_path, keep_default_na=False)
-# normalize location name and add to dataframe
-merged_df = df.merge(df['English short name'].apply(normalize),
-                     left_index=True, right_index=True)
-# save new df as csv
-merged_df.to_csv(csv_output_path, index=False)
+
+def main():
+    """
+    Read CSV, normalize location data and write new CSV.
+    """
+
+    # get api key from config
+    config = configparser.ConfigParser()
+    config.read('apikey.cfg')
+    api_key = config['GOOGLEMAPS']['API_KEY']
+    # set csv paths
+    csv_input_path = './ISO_source_files/iso3166-1_country_codes.csv'
+    csv_output_path = './ISO_out/iso3166-1_normalized.csv'
+    # read csv file
+    df = pd.read_csv(csv_input_path, keep_default_na=False)
+    # normalize location name and add to dataframe
+    merged_df = df.merge(df['English short name'].apply(normalize, key=api_key),
+                        left_index=True, right_index=True)
+    # save new df as csv
+    merged_df.to_csv(csv_output_path, index=False)
+
+
+if __name__ == "__main__":
+    main()

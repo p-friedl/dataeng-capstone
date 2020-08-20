@@ -1,6 +1,7 @@
 import googlemaps
 import pandas as pd
 import time
+import configparser
 
 
 def country_lookup(iso_code, ref_table):
@@ -17,7 +18,7 @@ def country_lookup(iso_code, ref_table):
     return pd.Series({'country_name': country[1:]})
 
 
-def normalize(location):
+def normalize(location, key):
     """
     Normalize location input based on Google Maps Geocode API.
     """
@@ -27,7 +28,7 @@ def normalize(location):
 
     # create googlemaps client - enter your API key
     # info: https://developers.google.com/maps/documentation/geocoding/get-api-key
-    gmaps = googlemaps.Client(key='ENTER YOUR API CODE HERE')
+    gmaps = googlemaps.Client(key=key)
     # get geocode result
     geocode_result = gmaps.geocode(location)
 
@@ -92,25 +93,38 @@ def normalize(location):
                       'place_id': place_id})
 
 
-# config - set csv paths
-iso_ref_input_path = './ISO_out/iso3166-1_normalized.csv'
-csv_input_path = './ISO_source_files/IP2LOCATION-ISO3166-2.CSV'
-csv_output_path = './ISO_out/iso3166-2_normalized.csv'
+def main():
+    """
+    Read CSV, lookup / normalize location data and write new CSV.
+    """
 
-# read csv file
-iso_ref = pd.read_csv(iso_ref_input_path, keep_default_na=False)
-df = pd.read_csv(csv_input_path, keep_default_na=False)
+    # get api key from config
+    config = configparser.ConfigParser()
+    config.read('apikey.cfg')
+    api_key = config['GOOGLEMAPS']['API_KEY']
+    # config - set csv paths
+    iso_ref_input_path = './ISO_out/iso3166-1_normalized.csv'
+    csv_input_path = './ISO_source_files/IP2LOCATION-ISO3166-2.CSV'
+    csv_output_path = './ISO_out/iso3166-2_normalized.csv'
+    # read csv file
+    iso_ref = pd.read_csv(iso_ref_input_path, keep_default_na=False)
+    df = pd.read_csv(csv_input_path, keep_default_na=False)
 
-# lookup country name and add to dataframe
-lookup_df = df.merge(df['country_code']
+    # lookup country name and add to dataframe
+    lookup_df = df.merge(df['country_code']
                      .apply(country_lookup, ref_table=iso_ref),
                      left_index=True, right_index=True)
 
-lookup_df['combined_name'] = lookup_df['subdivision_name'] + \
-                             ', ' + lookup_df['country_name']
+    lookup_df['combined_name'] = lookup_df['subdivision_name'] + \
+                                 ', ' + lookup_df['country_name']
 
-# normalize location name and add to dataframe
-merged_df = lookup_df.merge(lookup_df['combined_name'].apply(normalize),
-                     left_index=True, right_index=True)
-# save new df as csv
-merged_df.to_csv(csv_output_path, index=False)
+    # normalize location name and add to dataframe
+    merged_df = lookup_df.merge(lookup_df['combined_name']
+                         .apply(normalize, key=api_key),
+                         left_index=True, right_index=True)
+    # save new df as csv
+    merged_df.to_csv(csv_output_path, index=False)
+
+
+if __name__ == "__main__":
+    main()
