@@ -1,73 +1,73 @@
 Active,Admin2,Confirmed,Country_Region,Date,Deaths,FIPS,Lat,Long_,Province_State,Recovered
-,,29631,Mainland China,2020-02-09,871,,,,Hubei,1795
-,,1131,Mainland China,2020-02-09,1,,,,Guangdong,141
-,,1075,Mainland China,2020-02-09,0,,,,Zhejiang,201
-,,1033,Mainland China,2020-02-09,6,,,,Henan,153
-,,838,Mainland China,2020-02-09,1,,,,Hunan,186
-,,779,Mainland China,2020-02-09,1,,,,Anhui,72
-,,740,Mainland China,2020-02-09,0,,,,Jiangxi,73
-,,468,Mainland China,2020-02-09,2,,,,Chongqing,51
-,,468,Mainland China,2020-02-09,0,,,,Jiangsu,71
-,,444,Mainland China,2020-02-09,1,,,,Shandong,63
-,,386,Mainland China,2020-02-09,1,,,,Sichuan,71
-,,326,Mainland China,2020-02-09,2,,,,Beijing,37
-,,307,Mainland China,2020-02-09,6,,,,Heilongjiang,14
-,,293,Mainland China,2020-02-09,1,,,,Shanghai,44
-,,250,Mainland China,2020-02-09,0,,,,Fujian,35
-,,208,Mainland China,2020-02-09,0,,,,Shaanxi,25
-,,206,Mainland China,2020-02-09,2,,,,Hebei,34
-,,195,Mainland China,2020-02-09,1,,,,Guangxi,18
-,,141,Mainland China,2020-02-09,0,,,,Yunnan,18
-,,131,Mainland China,2020-02-09,3,,,,Hainan,19
-,,119,Mainland China,2020-02-09,0,,,,Shanxi,25
-,,107,Mainland China,2020-02-09,0,,,,Liaoning,12
-,,99,Mainland China,2020-02-09,1,,,,Guizhou,7
-,,91,Mainland China,2020-02-09,1,,,,Tianjin,4
-,,83,Mainland China,2020-02-09,2,,,,Gansu,16
-,,78,Mainland China,2020-02-09,1,,,,Jilin,12
-,,64,Others,2020-02-09,0,,,,Diamond Princess cruise ship,0
-,,54,Mainland China,2020-02-09,0,,,,Inner Mongolia,5
-,,45,Mainland China,2020-02-09,0,,,,Ningxia,13
-,,45,Mainland China,2020-02-09,0,,,,Xinjiang,0
-,,40,Singapore,2020-02-09,0,,,,,2
-,,32,Thailand,2020-02-09,0,,,,,10
-,,29,Hong Kong,2020-02-09,1,,,,Hong Kong,0
-,,26,Japan,2020-02-09,0,,,,,1
-,,25,South Korea,2020-02-09,0,,,,,3
-,,18,Mainland China,2020-02-09,0,,,,Qinghai,3
-,,18,Taiwan,2020-02-09,0,,,,Taiwan,1
-,,16,Malaysia,2020-02-09,0,,,,,1
-,,14,Germany,2020-02-09,0,,,,,0
-,,13,Vietnam,2020-02-09,0,,,,,1
-,,11,France,2020-02-09,0,,,,,0
-,,10,Macau,2020-02-09,0,,,,Macau,1
-,,7,United Arab Emirates,2020-02-09,0,,,,,0
-,,5,Australia,2020-02-09,0,,,,Queensland,0
-,,4,Australia,2020-02-09,0,,,,New South Wales,2
-,,4,Australia,2020-02-09,0,,,,Victoria,0
-,,4,Canada,2020-02-09,0,,,,British Columbia,0
-,,3,India,2020-02-09,0,,,,,0
-,,3,Italy,2020-02-09,0,,,,,0
-,,3,Philippines,2020-02-09,1,,,,,0
-,,3,UK,2020-02-09,0,,,,,0
-,,2,Australia,2020-02-09,0,,,,South Australia,0
-,,2,Canada,2020-02-09,0,,,,"Toronto, ON",0
-,,2,Russia,2020-02-09,0,,,,,0
-,,2,Spain,2020-02-09,0,,,,,0
-,,2,US,2020-02-09,0,,,,"Chicago, IL",2
-,,2,US,2020-02-09,0,,,,"San Benito, CA",0
-,,2,US,2020-02-09,0,,,,"Santa Clara, CA",0
-,,1,Belgium,2020-02-09,0,,,,,0
-,,1,Cambodia,2020-02-09,0,,,,,0
-,,1,Canada,2020-02-09,0,,,,"London, ON",0
-,,1,Finland,2020-02-09,0,,,,,0
-,,1,Mainland China,2020-02-09,0,,,,Tibet,0
-,,1,Nepal,2020-02-09,0,,,,,0
-,,1,Sri Lanka,2020-02-09,0,,,,,1
-,,1,Sweden,2020-02-09,0,,,,,0
-,,1,US,2020-02-09,0,,,,"Boston, MA",0
-,,1,US,2020-02-09,0,,,,"Los Angeles, CA",0
-,,1,US,2020-02-09,0,,,,"Madison, WI",0
-,,1,US,2020-02-09,0,,,,"Orange, CA",0
-,,1,US,2020-02-09,0,,,,"Seattle, WA",1
-,,1,US,2020-02-09,0,,,,"Tempe, AZ",0
+0,,29631,Mainland China,2020-02-09,871,0,,,Hubei,1795
+0,,1131,Mainland China,2020-02-09,1,0,,,Guangdong,141
+0,,1075,Mainland China,2020-02-09,0,0,,,Zhejiang,201
+0,,1033,Mainland China,2020-02-09,6,0,,,Henan,153
+0,,838,Mainland China,2020-02-09,1,0,,,Hunan,186
+0,,779,Mainland China,2020-02-09,1,0,,,Anhui,72
+0,,740,Mainland China,2020-02-09,0,0,,,Jiangxi,73
+0,,468,Mainland China,2020-02-09,2,0,,,Chongqing,51
+0,,468,Mainland China,2020-02-09,0,0,,,Jiangsu,71
+0,,444,Mainland China,2020-02-09,1,0,,,Shandong,63
+0,,386,Mainland China,2020-02-09,1,0,,,Sichuan,71
+0,,326,Mainland China,2020-02-09,2,0,,,Beijing,37
+0,,307,Mainland China,2020-02-09,6,0,,,Heilongjiang,14
+0,,293,Mainland China,2020-02-09,1,0,,,Shanghai,44
+0,,250,Mainland China,2020-02-09,0,0,,,Fujian,35
+0,,208,Mainland China,2020-02-09,0,0,,,Shaanxi,25
+0,,206,Mainland China,2020-02-09,2,0,,,Hebei,34
+0,,195,Mainland China,2020-02-09,1,0,,,Guangxi,18
+0,,141,Mainland China,2020-02-09,0,0,,,Yunnan,18
+0,,131,Mainland China,2020-02-09,3,0,,,Hainan,19
+0,,119,Mainland China,2020-02-09,0,0,,,Shanxi,25
+0,,107,Mainland China,2020-02-09,0,0,,,Liaoning,12
+0,,99,Mainland China,2020-02-09,1,0,,,Guizhou,7
+0,,91,Mainland China,2020-02-09,1,0,,,Tianjin,4
+0,,83,Mainland China,2020-02-09,2,0,,,Gansu,16
+0,,78,Mainland China,2020-02-09,1,0,,,Jilin,12
+0,,64,Others,2020-02-09,0,0,,,Diamond Princess cruise ship,0
+0,,54,Mainland China,2020-02-09,0,0,,,Inner Mongolia,5
+0,,45,Mainland China,2020-02-09,0,0,,,Ningxia,13
+0,,45,Mainland China,2020-02-09,0,0,,,Xinjiang,0
+0,,40,Singapore,2020-02-09,0,0,,,,2
+0,,32,Thailand,2020-02-09,0,0,,,,10
+0,,29,Hong Kong,2020-02-09,1,0,,,Hong Kong,0
+0,,26,Japan,2020-02-09,0,0,,,,1
+0,,25,South Korea,2020-02-09,0,0,,,,3
+0,,18,Mainland China,2020-02-09,0,0,,,Qinghai,3
+0,,18,Taiwan,2020-02-09,0,0,,,Taiwan,1
+0,,16,Malaysia,2020-02-09,0,0,,,,1
+0,,14,Germany,2020-02-09,0,0,,,,0
+0,,13,Vietnam,2020-02-09,0,0,,,,1
+0,,11,France,2020-02-09,0,0,,,,0
+0,,10,Macau,2020-02-09,0,0,,,Macau,1
+0,,7,United Arab Emirates,2020-02-09,0,0,,,,0
+0,,5,Australia,2020-02-09,0,0,,,Queensland,0
+0,,4,Australia,2020-02-09,0,0,,,New South Wales,2
+0,,4,Australia,2020-02-09,0,0,,,Victoria,0
+0,,4,Canada,2020-02-09,0,0,,,British Columbia,0
+0,,3,India,2020-02-09,0,0,,,,0
+0,,3,Italy,2020-02-09,0,0,,,,0
+0,,3,Philippines,2020-02-09,1,0,,,,0
+0,,3,UK,2020-02-09,0,0,,,,0
+0,,2,Australia,2020-02-09,0,0,,,South Australia,0
+0,,2,Canada,2020-02-09,0,0,,,"Toronto, ON",0
+0,,2,Russia,2020-02-09,0,0,,,,0
+0,,2,Spain,2020-02-09,0,0,,,,0
+0,,2,US,2020-02-09,0,0,,,"Chicago, IL",2
+0,,2,US,2020-02-09,0,0,,,"San Benito, CA",0
+0,,2,US,2020-02-09,0,0,,,"Santa Clara, CA",0
+0,,1,Belgium,2020-02-09,0,0,,,,0
+0,,1,Cambodia,2020-02-09,0,0,,,,0
+0,,1,Canada,2020-02-09,0,0,,,"London, ON",0
+0,,1,Finland,2020-02-09,0,0,,,,0
+0,,1,Mainland China,2020-02-09,0,0,,,Tibet,0
+0,,1,Nepal,2020-02-09,0,0,,,,0
+0,,1,Sri Lanka,2020-02-09,0,0,,,,1
+0,,1,Sweden,2020-02-09,0,0,,,,0
+0,,1,US,2020-02-09,0,0,,,"Boston, MA",0
+0,,1,US,2020-02-09,0,0,,,"Los Angeles, CA",0
+0,,1,US,2020-02-09,0,0,,,"Madison, WI",0
+0,,1,US,2020-02-09,0,0,,,"Orange, CA",0
+0,,1,US,2020-02-09,0,0,,,"Seattle, WA",1
+0,,1,US,2020-02-09,0,0,,,"Tempe, AZ",0

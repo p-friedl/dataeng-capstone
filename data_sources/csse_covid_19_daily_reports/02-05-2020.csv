@@ -1,72 +1,72 @@
 Active,Admin2,Confirmed,Country_Region,Date,Deaths,FIPS,Lat,Long_,Province_State,Recovered
-,,19665,Mainland China,2020-02-05,549,,,,Hubei,633
-,,895,Mainland China,2020-02-05,0,,,,Guangdong,49
-,,895,Mainland China,2020-02-05,0,,,,Zhejiang,78
-,,764,Mainland China,2020-02-05,2,,,,Henan,47
-,,661,Mainland China,2020-02-05,0,,,,Hunan,54
-,,548,Mainland China,2020-02-05,0,,,,Jiangxi,27
-,,530,Mainland China,2020-02-05,0,,,,Anhui,23
-,,389,Mainland China,2020-02-05,2,,,,Chongqing,15
-,,341,Mainland China,2020-02-05,0,,,,Jiangsu,23
-,,307,Mainland China,2020-02-05,0,,,,Shandong,15
-,,301,Mainland China,2020-02-05,1,,,,Sichuan,24
-,,253,Mainland China,2020-02-05,1,,,,Beijing,24
-,,243,Mainland China,2020-02-05,1,,,,Shanghai,15
-,,205,Mainland China,2020-02-05,0,,,,Fujian,11
-,,190,Mainland China,2020-02-05,2,,,,Heilongjiang,7
-,,165,Mainland China,2020-02-05,0,,,,Shaanxi,6
-,,150,Mainland China,2020-02-05,0,,,,Guangxi,13
-,,135,Mainland China,2020-02-05,1,,,,Hebei,6
-,,128,Mainland China,2020-02-05,0,,,,Yunnan,5
-,,99,Mainland China,2020-02-05,1,,,,Hainan,5
-,,89,Mainland China,2020-02-05,0,,,,Liaoning,4
-,,81,Mainland China,2020-02-05,0,,,,Shanxi,5
-,,69,Mainland China,2020-02-05,1,,,,Tianjin,2
-,,64,Mainland China,2020-02-05,1,,,,Guizhou,9
-,,62,Mainland China,2020-02-05,0,,,,Gansu,6
-,,54,Mainland China,2020-02-05,0,,,,Jilin,2
-,,42,Mainland China,2020-02-05,0,,,,Inner Mongolia,3
-,,34,Mainland China,2020-02-05,0,,,,Ningxia,1
-,,32,Mainland China,2020-02-05,0,,,,Xinjiang,0
-,,28,Singapore,2020-02-05,0,,,,,0
-,,25,Thailand,2020-02-05,0,,,,,5
-,,22,Japan,2020-02-05,0,,,,,1
-,,21,Hong Kong,2020-02-05,1,,,,Hong Kong,0
-,,19,South Korea,2020-02-05,0,,,,,0
-,,17,Mainland China,2020-02-05,0,,,,Qinghai,3
-,,12,Germany,2020-02-05,0,,,,,0
-,,12,Malaysia,2020-02-05,0,,,,,0
-,,11,Taiwan,2020-02-05,0,,,,Taiwan,0
-,,10,Macau,2020-02-05,0,,,,Macau,0
-,,8,Vietnam,2020-02-05,0,,,,,1
-,,6,France,2020-02-05,0,,,,,0
-,,5,United Arab Emirates,2020-02-05,0,,,,,0
-,,4,Australia,2020-02-05,0,,,,New South Wales,2
-,,4,Australia,2020-02-05,0,,,,Victoria,0
-,,3,Australia,2020-02-05,0,,,,Queensland,0
-,,3,India,2020-02-05,0,,,,,0
-,,2,Australia,2020-02-05,0,,,,South Australia,0
-,,2,Canada,2020-02-05,0,,,,British Columbia,0
-,,2,Canada,2020-02-05,0,,,,"Toronto, ON",0
-,,2,Italy,2020-02-05,0,,,,,0
-,,2,Philippines,2020-02-05,1,,,,,0
-,,2,Russia,2020-02-05,0,,,,,0
-,,2,UK,2020-02-05,0,,,,,0
-,,2,US,2020-02-05,0,,,,"Chicago, IL",0
-,,2,US,2020-02-05,0,,,,"San Benito, CA",0
-,,2,US,2020-02-05,0,,,,"Santa Clara, CA",0
-,,1,Belgium,2020-02-05,0,,,,,0
-,,1,Cambodia,2020-02-05,0,,,,,0
-,,1,Canada,2020-02-05,0,,,,"London, ON",0
-,,1,Finland,2020-02-05,0,,,,,0
-,,1,Mainland China,2020-02-05,0,,,,Tibet,0
-,,1,Nepal,2020-02-05,0,,,,,0
-,,1,Spain,2020-02-05,0,,,,,0
-,,1,Sri Lanka,2020-02-05,0,,,,,0
-,,1,Sweden,2020-02-05,0,,,,,0
-,,1,US,2020-02-05,0,,,,"Boston, MA",0
-,,1,US,2020-02-05,0,,,,"Los Angeles, CA",0
-,,1,US,2020-02-05,0,,,,"Madison, WI",0
-,,1,US,2020-02-05,0,,,,"Orange, CA",0
-,,1,US,2020-02-05,0,,,,"Seattle, WA",0
-,,1,US,2020-02-05,0,,,,"Tempe, AZ",0
+0,,19665,Mainland China,2020-02-05,549,0,,,Hubei,633
+0,,895,Mainland China,2020-02-05,0,0,,,Guangdong,49
+0,,895,Mainland China,2020-02-05,0,0,,,Zhejiang,78
+0,,764,Mainland China,2020-02-05,2,0,,,Henan,47
+0,,661,Mainland China,2020-02-05,0,0,,,Hunan,54
+0,,548,Mainland China,2020-02-05,0,0,,,Jiangxi,27
+0,,530,Mainland China,2020-02-05,0,0,,,Anhui,23
+0,,389,Mainland China,2020-02-05,2,0,,,Chongqing,15
+0,,341,Mainland China,2020-02-05,0,0,,,Jiangsu,23
+0,,307,Mainland China,2020-02-05,0,0,,,Shandong,15
+0,,301,Mainland China,2020-02-05,1,0,,,Sichuan,24
+0,,253,Mainland China,2020-02-05,1,0,,,Beijing,24
+0,,243,Mainland China,2020-02-05,1,0,,,Shanghai,15
+0,,205,Mainland China,2020-02-05,0,0,,,Fujian,11
+0,,190,Mainland China,2020-02-05,2,0,,,Heilongjiang,7
+0,,165,Mainland China,2020-02-05,0,0,,,Shaanxi,6
+0,,150,Mainland China,2020-02-05,0,0,,,Guangxi,13
+0,,135,Mainland China,2020-02-05,1,0,,,Hebei,6
+0,,128,Mainland China,2020-02-05,0,0,,,Yunnan,5
+0,,99,Mainland China,2020-02-05,1,0,,,Hainan,5
+0,,89,Mainland China,2020-02-05,0,0,,,Liaoning,4
+0,,81,Mainland China,2020-02-05,0,0,,,Shanxi,5
+0,,69,Mainland China,2020-02-05,1,0,,,Tianjin,2
+0,,64,Mainland China,2020-02-05,1,0,,,Guizhou,9
+0,,62,Mainland China,2020-02-05,0,0,,,Gansu,6
+0,,54,Mainland China,2020-02-05,0,0,,,Jilin,2
+0,,42,Mainland China,2020-02-05,0,0,,,Inner Mongolia,3
+0,,34,Mainland China,2020-02-05,0,0,,,Ningxia,1
+0,,32,Mainland China,2020-02-05,0,0,,,Xinjiang,0
+0,,28,Singapore,2020-02-05,0,0,,,,0
+0,,25,Thailand,2020-02-05,0,0,,,,5
+0,,22,Japan,2020-02-05,0,0,,,,1
+0,,21,Hong Kong,2020-02-05,1,0,,,Hong Kong,0
+0,,19,South Korea,2020-02-05,0,0,,,,0
+0,,17,Mainland China,2020-02-05,0,0,,,Qinghai,3
+0,,12,Germany,2020-02-05,0,0,,,,0
+0,,12,Malaysia,2020-02-05,0,0,,,,0
+0,,11,Taiwan,2020-02-05,0,0,,,Taiwan,0
+0,,10,Macau,2020-02-05,0,0,,,Macau,0
+0,,8,Vietnam,2020-02-05,0,0,,,,1
+0,,6,France,2020-02-05,0,0,,,,0
+0,,5,United Arab Emirates,2020-02-05,0,0,,,,0
+0,,4,Australia,2020-02-05,0,0,,,New South Wales,2
+0,,4,Australia,2020-02-05,0,0,,,Victoria,0
+0,,3,Australia,2020-02-05,0,0,,,Queensland,0
+0,,3,India,2020-02-05,0,0,,,,0
+0,,2,Australia,2020-02-05,0,0,,,South Australia,0
+0,,2,Canada,2020-02-05,0,0,,,British Columbia,0
+0,,2,Canada,2020-02-05,0,0,,,"Toronto, ON",0
+0,,2,Italy,2020-02-05,0,0,,,,0
+0,,2,Philippines,2020-02-05,1,0,,,,0
+0,,2,Russia,2020-02-05,0,0,,,,0
+0,,2,UK,2020-02-05,0,0,,,,0
+0,,2,US,2020-02-05,0,0,,,"Chicago, IL",0
+0,,2,US,2020-02-05,0,0,,,"San Benito, CA",0
+0,,2,US,2020-02-05,0,0,,,"Santa Clara, CA",0
+0,,1,Belgium,2020-02-05,0,0,,,,0
+0,,1,Cambodia,2020-02-05,0,0,,,,0
+0,,1,Canada,2020-02-05,0,0,,,"London, ON",0
+0,,1,Finland,2020-02-05,0,0,,,,0
+0,,1,Mainland China,2020-02-05,0,0,,,Tibet,0
+0,,1,Nepal,2020-02-05,0,0,,,,0
+0,,1,Spain,2020-02-05,0,0,,,,0
+0,,1,Sri Lanka,2020-02-05,0,0,,,,0
+0,,1,Sweden,2020-02-05,0,0,,,,0
+0,,1,US,2020-02-05,0,0,,,"Boston, MA",0
+0,,1,US,2020-02-05,0,0,,,"Los Angeles, CA",0
+0,,1,US,2020-02-05,0,0,,,"Madison, WI",0
+0,,1,US,2020-02-05,0,0,,,"Orange, CA",0
+0,,1,US,2020-02-05,0,0,,,"Seattle, WA",0
+0,,1,US,2020-02-05,0,0,,,"Tempe, AZ",0

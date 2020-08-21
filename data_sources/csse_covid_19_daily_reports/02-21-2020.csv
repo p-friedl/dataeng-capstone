@@ -1,85 +1,85 @@
 Active,Admin2,Confirmed,Country_Region,Date,Deaths,FIPS,Lat,Long_,Province_State,Recovered
-,,62662,Mainland China,2020-02-21,2144,,,,Hubei,11881
-,,1333,Mainland China,2020-02-21,5,,,,Guangdong,690
-,,1267,Mainland China,2020-02-21,19,,,,Henan,736
-,,1203,Mainland China,2020-02-21,1,,,,Zhejiang,679
-,,1011,Mainland China,2020-02-21,4,,,,Hunan,661
-,,988,Mainland China,2020-02-21,6,,,,Anhui,539
-,,934,Mainland China,2020-02-21,1,,,,Jiangxi,489
-,,749,Mainland China,2020-02-21,4,,,,Shandong,281
-,,634,Others,2020-02-21,2,,,,Diamond Princess cruise ship,1
-,,631,Mainland China,2020-02-21,0,,,,Jiangsu,373
-,,572,Mainland China,2020-02-21,6,,,,Chongqing,316
-,,525,Mainland China,2020-02-21,3,,,,Sichuan,231
-,,479,Mainland China,2020-02-21,12,,,,Heilongjiang,175
-,,396,Mainland China,2020-02-21,4,,,,Beijing,169
-,,334,Mainland China,2020-02-21,2,,,,Shanghai,211
-,,308,Mainland China,2020-02-21,5,,,,Hebei,184
-,,293,Mainland China,2020-02-21,1,,,,Fujian,149
-,,246,Mainland China,2020-02-21,2,,,,Guangxi,97
-,,245,Mainland China,2020-02-21,1,,,,Shaanxi,134
-,,204,South Korea,2020-02-21,2,,,,,16
-,,174,Mainland China,2020-02-21,2,,,,Yunnan,96
-,,168,Mainland China,2020-02-21,4,,,,Hainan,95
-,,146,Mainland China,2020-02-21,2,,,,Guizhou,77
-,,132,Mainland China,2020-02-21,0,,,,Shanxi,78
-,,132,Mainland China,2020-02-21,3,,,,Tianjin,62
-,,121,Mainland China,2020-02-21,1,,,,Liaoning,61
-,,105,Japan,2020-02-21,1,,,,,22
-,,91,Mainland China,2020-02-21,2,,,,Gansu,76
-,,91,Mainland China,2020-02-21,1,,,,Jilin,45
-,,85,Singapore,2020-02-21,0,,,,,37
-,,76,Mainland China,2020-02-21,1,,,,Xinjiang,24
-,,75,Mainland China,2020-02-21,0,,,,Inner Mongolia,17
-,,71,Mainland China,2020-02-21,0,,,,Ningxia,48
-,,68,Hong Kong,2020-02-21,2,,,,Hong Kong,5
-,,35,Thailand,2020-02-21,0,,,,,17
-,,26,Taiwan,2020-02-21,1,,,,Taiwan,2
-,,22,Malaysia,2020-02-21,0,,,,,15
-,,20,Italy,2020-02-21,1,,,,,0
-,,18,Iran,2020-02-21,4,,,,,0
-,,18,Mainland China,2020-02-21,0,,,,Qinghai,18
-,,16,Germany,2020-02-21,0,,,,,14
-,,16,Vietnam,2020-02-21,0,,,,,14
-,,12,France,2020-02-21,1,,,,,4
-,,11,US,2020-02-21,0,,,,"Ashland, NE",0
-,,10,Macau,2020-02-21,0,,,,Macau,6
-,,9,UK,2020-02-21,0,,,,,8
-,,9,United Arab Emirates,2020-02-21,0,,,,,4
-,,6,Canada,2020-02-21,0,,,,British Columbia,0
-,,5,Australia,2020-02-21,0,,,,Queensland,1
-,,5,US,2020-02-21,0,,,,"Travis, CA",0
-,,4,Australia,2020-02-21,0,,,,From Diamond Princess,0
-,,4,Australia,2020-02-21,0,,,,New South Wales,4
-,,4,Australia,2020-02-21,0,,,,Victoria,4
-,,3,India,2020-02-21,0,,,,,3
-,,3,Philippines,2020-02-21,1,,,,,1
-,,2,Australia,2020-02-21,0,,,,South Australia,2
-,,2,Canada,2020-02-21,0,,,,"Toronto, ON",2
-,,2,Russia,2020-02-21,0,,,,,2
-,,2,Spain,2020-02-21,0,,,,,2
-,,2,US,2020-02-21,0,,,,"Chicago, IL",2
-,,2,US,2020-02-21,0,,,,"Lackland, TX",0
-,,2,US,2020-02-21,0,,,,"San Benito, CA",0
-,,2,US,2020-02-21,0,,,,"San Diego County, CA",1
-,,2,US,2020-02-21,0,,,,"Santa Clara, CA",1
-,,1,Belgium,2020-02-21,0,,,,,1
-,,1,Cambodia,2020-02-21,0,,,,,1
-,,1,Canada,2020-02-21,0,,,,"London, ON",1
-,,1,Egypt,2020-02-21,0,,,,,0
-,,1,Finland,2020-02-21,0,,,,,1
-,,1,Israel,2020-02-21,0,,,,From Diamond Princess,0
-,,1,Lebanon,2020-02-21,0,,,,None,0
-,,1,Mainland China,2020-02-21,0,,,,Tibet,1
-,,1,Nepal,2020-02-21,0,,,,,1
-,,1,Sri Lanka,2020-02-21,0,,,,,1
-,,1,Sweden,2020-02-21,0,,,,,0
-,,1,US,2020-02-21,0,,,,"Boston, MA",0
-,,1,US,2020-02-21,0,,,,"Humboldt County, CA",0
-,,1,US,2020-02-21,0,,,,"Los Angeles, CA",0
-,,1,US,2020-02-21,0,,,,"Madison, WI",0
-,,1,US,2020-02-21,0,,,,"Orange, CA",0
-,,1,US,2020-02-21,0,,,,"Sacramento County, CA",0
-,,1,US,2020-02-21,0,,,,"San Antonio, TX",0
-,,1,US,2020-02-21,0,,,,"Seattle, WA",1
-,,1,US,2020-02-21,0,,,,"Tempe, AZ",0
+0,,62662,Mainland China,2020-02-21,2144,0,,,Hubei,11881
+0,,1333,Mainland China,2020-02-21,5,0,,,Guangdong,690
+0,,1267,Mainland China,2020-02-21,19,0,,,Henan,736
+0,,1203,Mainland China,2020-02-21,1,0,,,Zhejiang,679
+0,,1011,Mainland China,2020-02-21,4,0,,,Hunan,661
+0,,988,Mainland China,2020-02-21,6,0,,,Anhui,539
+0,,934,Mainland China,2020-02-21,1,0,,,Jiangxi,489
+0,,749,Mainland China,2020-02-21,4,0,,,Shandong,281
+0,,634,Others,2020-02-21,2,0,,,Diamond Princess cruise ship,1
+0,,631,Mainland China,2020-02-21,0,0,,,Jiangsu,373
+0,,572,Mainland China,2020-02-21,6,0,,,Chongqing,316
+0,,525,Mainland China,2020-02-21,3,0,,,Sichuan,231
+0,,479,Mainland China,2020-02-21,12,0,,,Heilongjiang,175
+0,,396,Mainland China,2020-02-21,4,0,,,Beijing,169
+0,,334,Mainland China,2020-02-21,2,0,,,Shanghai,211
+0,,308,Mainland China,2020-02-21,5,0,,,Hebei,184
+0,,293,Mainland China,2020-02-21,1,0,,,Fujian,149
+0,,246,Mainland China,2020-02-21,2,0,,,Guangxi,97
+0,,245,Mainland China,2020-02-21,1,0,,,Shaanxi,134
+0,,204,South Korea,2020-02-21,2,0,,,,16
+0,,174,Mainland China,2020-02-21,2,0,,,Yunnan,96
+0,,168,Mainland China,2020-02-21,4,0,,,Hainan,95
+0,,146,Mainland China,2020-02-21,2,0,,,Guizhou,77
+0,,132,Mainland China,2020-02-21,0,0,,,Shanxi,78
+0,,132,Mainland China,2020-02-21,3,0,,,Tianjin,62
+0,,121,Mainland China,2020-02-21,1,0,,,Liaoning,61
+0,,105,Japan,2020-02-21,1,0,,,,22
+0,,91,Mainland China,2020-02-21,2,0,,,Gansu,76
+0,,91,Mainland China,2020-02-21,1,0,,,Jilin,45
+0,,85,Singapore,2020-02-21,0,0,,,,37
+0,,76,Mainland China,2020-02-21,1,0,,,Xinjiang,24
+0,,75,Mainland China,2020-02-21,0,0,,,Inner Mongolia,17
+0,,71,Mainland China,2020-02-21,0,0,,,Ningxia,48
+0,,68,Hong Kong,2020-02-21,2,0,,,Hong Kong,5
+0,,35,Thailand,2020-02-21,0,0,,,,17
+0,,26,Taiwan,2020-02-21,1,0,,,Taiwan,2
+0,,22,Malaysia,2020-02-21,0,0,,,,15
+0,,20,Italy,2020-02-21,1,0,,,,0
+0,,18,Iran,2020-02-21,4,0,,,,0
+0,,18,Mainland China,2020-02-21,0,0,,,Qinghai,18
+0,,16,Germany,2020-02-21,0,0,,,,14
+0,,16,Vietnam,2020-02-21,0,0,,,,14
+0,,12,France,2020-02-21,1,0,,,,4
+0,,11,US,2020-02-21,0,0,,,"Ashland, NE",0
+0,,10,Macau,2020-02-21,0,0,,,Macau,6
+0,,9,UK,2020-02-21,0,0,,,,8
+0,,9,United Arab Emirates,2020-02-21,0,0,,,,4
+0,,6,Canada,2020-02-21,0,0,,,British Columbia,0
+0,,5,Australia,2020-02-21,0,0,,,Queensland,1
+0,,5,US,2020-02-21,0,0,,,"Travis, CA",0
+0,,4,Australia,2020-02-21,0,0,,,From Diamond Princess,0
+0,,4,Australia,2020-02-21,0,0,,,New South Wales,4
+0,,4,Australia,2020-02-21,0,0,,,Victoria,4
+0,,3,India,2020-02-21,0,0,,,,3
+0,,3,Philippines,2020-02-21,1,0,,,,1
+0,,2,Australia,2020-02-21,0,0,,,South Australia,2
+0,,2,Canada,2020-02-21,0,0,,,"Toronto, ON",2
+0,,2,Russia,2020-02-21,0,0,,,,2
+0,,2,Spain,2020-02-21,0,0,,,,2
+0,,2,US,2020-02-21,0,0,,,"Chicago, IL",2
+0,,2,US,2020-02-21,0,0,,,"Lackland, TX",0
+0,,2,US,2020-02-21,0,0,,,"San Benito, CA",0
+0,,2,US,2020-02-21,0,0,,,"San Diego County, CA",1
+0,,2,US,2020-02-21,0,0,,,"Santa Clara, CA",1
+0,,1,Belgium,2020-02-21,0,0,,,,1
+0,,1,Cambodia,2020-02-21,0,0,,,,1
+0,,1,Canada,2020-02-21,0,0,,,"London, ON",1
+0,,1,Egypt,2020-02-21,0,0,,,,0
+0,,1,Finland,2020-02-21,0,0,,,,1
+0,,1,Israel,2020-02-21,0,0,,,From Diamond Princess,0
+0,,1,Lebanon,2020-02-21,0,0,,,None,0
+0,,1,Mainland China,2020-02-21,0,0,,,Tibet,1
+0,,1,Nepal,2020-02-21,0,0,,,,1
+0,,1,Sri Lanka,2020-02-21,0,0,,,,1
+0,,1,Sweden,2020-02-21,0,0,,,,0
+0,,1,US,2020-02-21,0,0,,,"Boston, MA",0
+0,,1,US,2020-02-21,0,0,,,"Humboldt County, CA",0
+0,,1,US,2020-02-21,0,0,,,"Los Angeles, CA",0
+0,,1,US,2020-02-21,0,0,,,"Madison, WI",0
+0,,1,US,2020-02-21,0,0,,,"Orange, CA",0
+0,,1,US,2020-02-21,0,0,,,"Sacramento County, CA",0
+0,,1,US,2020-02-21,0,0,,,"San Antonio, TX",0
+0,,1,US,2020-02-21,0,0,,,"Seattle, WA",1
+0,,1,US,2020-02-21,0,0,,,"Tempe, AZ",0
