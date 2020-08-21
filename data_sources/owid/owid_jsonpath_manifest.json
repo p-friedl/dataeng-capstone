@@ -1,0 +1,16 @@
+{
+        "jsonpaths": [
+            "$.iso_code",
+            "$.continent",
+            "$.location",
+            "$.population",
+            "$.population_density",
+            "$.date",
+            "$.median_age",
+            "$.total_tests",
+            "$.new_tests",
+            "$.new_tests_smoothed",
+            "$.tests_units",
+            "$.stringency_index"
+    ]
+}
