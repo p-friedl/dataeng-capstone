@@ -85,7 +85,7 @@ def main():
             # exclude world aggregation
             if location != 'World':
                 # group into separate output files per country_code
-                # to avoid exceeding Redshift file size limit
+                # to avoid exceeding Redshift JSON file size limit
                 output_file = '{}.json'.format(country_code)
                 with open(output_file, 'w') as file:
                     file.write(''.join(parsed_data))
