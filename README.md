@@ -160,14 +160,16 @@ Additionally you need to provide an API Key for the Google Maps Geocoding API. P
 
 ## Import of Data Sources
 The data source import is performed with COPY statements that allow direct import from S3 storage. To achieve that the following staging and reference tables are created:
+
 ![Data Sources Staging Tables](./drawings/data_sources.png)
+
 The staging and reference tables are automatically dropped after a successful run of the ETL process.
 
 ## Data Transformation
 
 ![ETL Flowchart](./drawings/etl.png)
 
-After the successful import of the staging and reference tables the given data gets transformed and inserted into the final tables.
+After the successful import of the staging and reference tables the given data gets transformed and inserted into the final tables. First the dimension tables get filled up. For `dim_date` the `staging_covid_owid` dataset is taken as reference as it contains the longest date range amongst the staging datasets. As a next step the dimensions for country, region and subregion are created from hierarchical upper to lower order to ensure a proper insert of relations. Then the data from `staging_mobility` gets looked up and matched with the ISO and FIPS reference tables. `staging_mobility` serves as the guideline here as it contains the location codes of all used standards and additionally is the data source with the lowest available country locations (135 from roundabout 240 possible ones). This brings the advantage that non-existing relations can be avoided in the further process but also the downside that some covid facts are not inserted into the final model. Due to the fictional project requirements I decided to put the focus on the possibility to have valid data to aggregate. Finally as last step the facts are inserted into their tables. This happens for the `fact_covid_tests` and `fact_covid_response` in one single process (as these are only based on country). Regarding `fact_covid_cases` and `fact_mobility_measurements` three separate inserts are needed to again ensure the location relations. As there are some data points which don't provide region or subregion information substitute strings stating 'No Region' or 'No Subregion' have been inserted.
 
 ## Data Quality Checks
 
