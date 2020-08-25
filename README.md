@@ -155,6 +155,7 @@ The normalization of the ISO-3166-2 Table needed additional steps. To ensure the
 To run the normalization scripts your Python environment should have the following packages installed:
 - googlemaps
 - pandas
+
 Additionally you need to provide an API Key for the Google Maps Geocoding API. Please refer to the [Google Maps Developer Documentation](https://developers.google.com/maps/documentation/geocoding/get-api-key) to find out how you can get your API Key. As soon you have your key ready you need to enter it in the following configuration file: `ISO_Normalization/apikey.cfg`. Afterwards you can run `ISO_Normalization/normalize_iso3166-1.py` and `ISO_Normalization/normalize_iso3166-2.py`. The output will appear in `ISO_Normalization/ISO_out/`. The normalized files are already included in the project. Therefore you don't need to re-run the script if you don't want to.
 
 ## Import of Data Sources
