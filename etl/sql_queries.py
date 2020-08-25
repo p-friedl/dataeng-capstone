@@ -174,7 +174,7 @@ fact_covid_tests_create = (
           country_iso varchar(3) NOT NULL REFERENCES dim_country(id),
           tests_total integer,
           tests_new integer,
-          new_tests_smoothed integer,
+          tests_new_smoothed integer,
           tests_unit varchar(30));"""
           )
 
@@ -526,21 +526,47 @@ fact_covid_cases_subregion_level_table_insert = (
            ON (cov.Date = d.date));"""
            )
 
+# QC QUERIES
+count_staging_covid_owid = "SELECT COUNT(*) FROM staging_covid_owid;"
+count_staging_covid_csse = "SELECT COUNT(*) FROM staging_covid_csse;"
+count_staging_mobility = "SELECT COUNT(*) FROM staging_mobility;"
+count_fact_covid_cases = "SELECT COUNT(*) FROM fact_covid_cases;"
+count_fact_covid_tests = "SELECT COUNT(*) FROM fact_covid_tests;"
+count_fact_covid_response = "SELECT COUNT(*) FROM fact_covid_response;"
+count_fact_mobility_measurements = ("""SELECT COUNT(*) FROM
+                                       fact_mobility_measurements;""")
+
 # QUERY LISTS
-create_table_queries = [staging_mobility_create,
-                        staging_covid_owid_create,
-                        staging_covid_csse_create,
-                        ref_iso3166_1_create,
-                        ref_iso3166_2_create,
-                        ref_fips_create,
-                        dim_date_create,
-                        dim_country_create,
-                        dim_region_create,
-                        dim_subregion_create,
-                        fact_covid_cases_create,
-                        fact_covid_tests_create,
-                        fact_covid_response_create,
-                        fact_mobility_measurements_create]
+create_table_queries = [
+    {'q': staging_mobility_create,
+     'desc': 'Create Table staging_mobility'},
+    {'q': staging_covid_owid_create,
+     'desc': 'Create Table staging_covid_owid'},
+    {'q': staging_covid_csse_create,
+     'desc': 'Create Table staging_covid_csse'},
+    {'q': ref_iso3166_1_create,
+     'desc': 'Create Table ref_ISO3166_1'},
+    {'q': ref_iso3166_2_create,
+     'desc': 'Create Table ref_ISO3166_2'},
+    {'q': ref_fips_create,
+     'desc': 'Create Table ref_fips'},
+    {'q': dim_date_create,
+     'desc': 'Create Table dim_date'},
+    {'q': dim_country_create,
+     'desc': 'Create Table dim_country'},
+    {'q': dim_region_create,
+     'desc': 'Create Table dim_region'},
+    {'q': dim_subregion_create,
+     'desc': 'Create Table dim_subregion'},
+    {'q': fact_covid_cases_create,
+     'desc': 'Create Table fact_covid_cases'},
+    {'q': fact_covid_tests_create,
+     'desc': 'Create Table fact_covid_tests'},
+    {'q': fact_covid_response_create,
+     'desc': 'Create Table fact_covid_response'},
+    {'q': fact_mobility_measurements_create,
+     'desc': 'Create Table fact_mobility_measurements'}
+    ]
 
 drop_table_queries = [staging_covid_owid_table_drop,
                       staging_covid_csse_table_drop,
@@ -564,23 +590,61 @@ drop_staging_only_table_queries = [staging_covid_owid_table_drop,
                                    ref_iso3166_2_table_drop,
                                    ref_fips_table_drop]
 
-copy_table_queries = [ref_iso3166_1_copy,
-                      ref_iso3166_2_copy,
-                      ref_fips_copy,
-                      staging_mobility_copy,
-                      staging_covid_owid_copy,
-                      staging_covid_csse_copy]
+copy_table_queries = [
+    {'q': ref_iso3166_1_copy,
+     'desc': 'Import ref_iso3166_1 data source'},
+    {'q': ref_iso3166_2_copy,
+     'desc': 'Import ref_iso3166_2 data source'},
+    {'q': ref_fips_copy,
+     'desc': 'Import ref_fips data source'},
+    {'q': staging_mobility_copy,
+     'desc': 'Import staging_mobility data source'},
+    {'q': staging_covid_owid_copy,
+     'desc': 'Import staging_covid_owid data source'},
+    {'q': staging_covid_csse_copy,
+     'desc': 'Import staging_covid_csse data source'}
+    ]
 
-insert_table_queries = [dim_date_table_insert,
-                        dim_country_table_insert,
-                        dim_region_table_iso_insert,
-                        dim_region_table_fips_insert,
-                        dim_subregion_table_insert,
-                        fact_covid_cases_country_level_table_insert,
-                        fact_covid_cases_region_level_table_insert,
-                        fact_covid_cases_subregion_level_table_insert,
-                        fact_covid_tests_table_insert,
-                        fact_covid_response_table_insert,
-                        fact_mobility_country_level_table_insert,
-                        fact_mobility_region_level_table_insert,
-                        fact_mobility_subregion_level_table_insert]
+insert_table_queries = [
+    {'q': dim_date_table_insert,
+     'desc': 'Insert dim_date data'},
+    {'q': dim_country_table_insert,
+     'desc': 'Insert dim_country data'},
+    {'q': dim_region_table_iso_insert,
+     'desc': 'Insert dim_region ISO reference data'},
+    {'q': dim_region_table_fips_insert,
+     'desc': 'Insert dim_region FIPS reference data'},
+    {'q': dim_subregion_table_insert,
+     'desc': 'Insert dim_subregion data'},
+    {'q': fact_covid_cases_country_level_table_insert,
+     'desc': 'Insert fact_covid_cases country data'},
+    {'q': fact_covid_cases_region_level_table_insert,
+     'desc': 'Insert fact_covid_cases region data'},
+    {'q': fact_covid_cases_subregion_level_table_insert,
+     'desc': 'Insert fact_covid_cases subregion data'},
+    {'q': fact_covid_tests_table_insert,
+     'desc': 'Insert fact_covid_tests data'},
+    {'q': fact_covid_response_table_insert,
+     'desc': 'Insert fact_covid_response data'},
+    {'q': fact_mobility_country_level_table_insert,
+     'desc': 'Insert fact_mobility_measurements country data'},
+    {'q': fact_mobility_region_level_table_insert,
+     'desc': 'Insert fact_mobility_measurements region data'},
+    {'q': fact_mobility_subregion_level_table_insert,
+     'desc': 'Insert fact_mobility_measurements data'}
+    ]
+
+qc_queries = [
+    {'count_source': count_staging_covid_owid,
+     'count_dest': count_fact_covid_tests,
+     'desc': "Compare row count of staging_covid_owid and fact_covid_tests"},
+    {'count_source': count_staging_covid_owid,
+     'count_dest': count_fact_covid_response,
+     'desc': "Compare row count of staging_covid_owid and fact_covid_response"},
+    {'count_source': count_staging_covid_csse,
+     'count_dest': count_fact_covid_cases,
+     'desc': "Compare row count of staging_covid_csse and fact_covid_cases"},
+    {'count_source': count_staging_mobility,
+     'count_dest': count_fact_mobility_measurements,
+     'desc': "Compare count of staging_mobility and fact_mobility_measurements"}
+    ]
