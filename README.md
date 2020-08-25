@@ -170,8 +170,13 @@ The staging and reference tables are automatically dropped after a successful ru
 ![ETL Flowchart](./drawings/etl.png)
 
 After the successful import of the staging and reference tables the given data gets transformed and inserted into the final tables. First the dimension tables get filled up. For `dim_date` the `staging_covid_owid` dataset is taken as reference as it contains the longest date range amongst the staging datasets. As a next step the dimensions for country, region and subregion are created from hierarchical upper to lower order to ensure a proper insert of relations. Then the data from `staging_mobility` gets looked up and matched with the ISO and FIPS reference tables. `staging_mobility` serves as the guideline here as it contains the location codes of all used standards and additionally is the data source with the lowest available country locations (135 from roundabout 240 possible ones). This brings the advantage that non-existing relations can be avoided in the further process but also the downside that some covid facts are not inserted into the final model. Due to the fictional project requirements I decided to put the focus on the possibility to have valid data to aggregate. Finally as last step the facts are inserted into their tables. This happens for the `fact_covid_tests` and `fact_covid_response` in one single process (as these are only based on country). Regarding `fact_covid_cases` and `fact_mobility_measurements` three separate inserts are needed to again ensure the location relations. As there are some data points which don't provide region or subregion information substitute strings stating 'No Region' or 'No Subregion' have been inserted.
+In the future I foresee to implement another Google Maps Geocoding API Normalization especially for the transformation of `staging_covid_csse` data as it doesn't contain ISO references and the Country / Region name lookup is not fully reliable without normalization.
 
 ## Data Quality Checks
+
+Overall I implemented two Data Quality Checks as required by the Project Rubric:
+- the first one is provided within the Data Schema / Table creation itself by enforcing that there are no NULL values on any Reference ID
+- the second one is provided at the end of the ETL process and compares the staging table row counts with their corresponding fact table row counts. Based on the description in the Data Transformation subchapter some row count losses for `fact_covid_tests`, `fact_covid_cases` and `fact_covid_response` are expected and normal to happen. But the row count check for `fact_mobility_measurements` is expected to pass. 
 
 # Other Scenarios
 The project rubric requires to outline the approach under the following different scenarios:
