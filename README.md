@@ -194,3 +194,13 @@ To run the pipeline on a daily basis the usage of Apache Airflow is recommended.
 To allow access for 100+ people the toolset needs no significant change. But the Redshift cluster should be scaled up to provide better query performance. In addition to that a data distribution strategy should be implemented. Another measure could be the slight redesign of the data model for example by applying more denormalization based on the must used queries of the users.
 
 # Run the Project
+
+In case you want to run the project on your:
+- download the entire project
+- ensure you have a proper Python environment with the `psycopg2` module installed
+- create or use an AWS S3 Bucket to upload the data from `/data_sources/` (for the files in `/data_sources/csse_covid_19_daily_reports` please ensure that you only upload the daily .csv files, for the files in `/data_sources/owid` please ensure that you only upload the json files with ISO Code in their filename, for `/data_sources/mobility` please ensure that you unzip and only upload the resulting .csv file)
+- start up or use an AWS Redshift Cluster - you need the Cluster endpoint, DB name, port, credentials and a valid IAM Role ARN that provides Redshift access to read the data from S3 (ensure that Redshift and S3 run in the same AWS region)
+- edit `etl/dwh.cfg` to provide the needed Redshift data and the S3 paths
+- navigate with your cmd tool to the etl project subfolder
+- run the table creation: `python3 create_tables.py`
+- run the ETL: `python3 etl.py`
