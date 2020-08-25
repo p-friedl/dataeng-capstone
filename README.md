@@ -163,6 +163,9 @@ The data source import is performed with COPY statements that allow direct impor
 The staging and reference tables are automatically dropped after a successful run of the ETL process.
 
 ## Data Transformation
+
+![ETL Flowchart](./drawings/etl.png)
+
 After the successful import of the staging and reference tables the given data gets transformed and inserted into the final tables.
 
 ## Data Quality Checks
