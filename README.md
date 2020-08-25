@@ -1,12 +1,12 @@
 # Fictional Project Scope
-A fictional research institute plans to analyze the impact of the COVID-19 pandemic on the Air quality.
+A fictional research institute plans to analyze the relation of the COVID-19 pandemic to mobility.
 To achieve that they have the following data sources available:
 - COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University
 - COVID-19 Dataset from Our World in Data
 - Google Mobility Data
-- Worldwide COVID-19 dataset from the Air Quality Open Data Platform
+- Reference Data for ISO 3166-1, 3166-2 and FIPS location codes
 
-They plan to combine these datasets according to answer specific questions on how COVID-19, Air quality and Mobility developed over time and / or in specific countries / regions during the pandemic. It should be possible to look at these topics individually but also to put them into relation. For this they contracted you as Data Engineer - they want you to build up a proper data model and perform the needed ETL operations with the target to prepare the data within Amazon Redshift for further analysis.
+They plan to combine these datasets according to answer specific questions on how COVID-19 and the mobility of humans developed over time and / or in specific countries / regions during the pandemic. It should be possible to look at these topics individually but also to put them into relation. For this they contracted you as Data Engineer - they want you to build up a proper data model and perform the needed ETL operations with the target to prepare the data for further analysis.
 
 # Data Exploration
 
@@ -14,6 +14,7 @@ They plan to combine these datasets according to answer specific questions on ho
 
 ### File Format & Structure
 The dataset is provided as either daily reports or time series summary. The daily reports are available worldwide or for US only. All files are provided in CSV format. For the project scope only the worldwide daily reports will be considered. These daily reports are delivered as single files per day with the following naming convention: `MM-DD-YYYY.csv` in UTC.
+The dataset has a size of `539,478 rows`.
 
 ### Field description
 Column|Description
@@ -32,11 +33,22 @@ Column|Description
 `Incidence_Rate`|Confirmed cases per 100,000 persons.
 `Case-Fatality_Ratio`|Percentage share of cases which ended deadly.
 
+### Data Issues
+During the Project I discovered the following issues with this dataset:
+- there is no `Date` field: it needed to be generated from the corresponding filename
+- some Column names are differently spelled in later file versions: the Column names needed to be harmonized
+- some Columns don't exists in earlier file versions: missing Columns needed to be added
+- to avoid the removal of prefix 0s the string datatype needed to be enforced on the `FIPS` field
+
+![COVID CSSE Data Pre-Processing](./drawings/harmonize_csse_data.png)
+
+All these issues are fixed by running `data_sources/csse_covid_19_daily_reports/harmonize_csse_data.py` on the raw data. The cleaned and harmonized files are already included in the project. Therefore you don't need to re-run the script if you don't want to.
 
 ## COVID-19 Dataset from Our World in Data
 
 ### File Format & Structure
 The dataset is available as Excel, CSV or JSON. To fulfill the project requirement of having at least two different data formats the JSON format version will be used. This dataset is provided as a single file in time series structure.
+The dataset has a size of `37,959 rows`.
 
 ### Field description
 Column|Description|Source
@@ -76,10 +88,21 @@ Column|Description|Source
 `hospital_beds_per_thousand`|Hospital beds per 1,000 people, most recent year available since 2010|OECD, Eurostat, World Bank, national government records and other sources
 `life_expectancy`|Life expectancy at birth in 2019|James C. Riley, Clio Infra, United Nations Population Division
 
+### Data Issues
+During the Project I discovered the following issues with this dataset:
+- Fields are missing in case there are missing values: missing fields needed to created
+- the JSON structure is too complex to be imported to Redshift via COPY statement (even with a json-manifest): the structure needed to be simplified
+- the single JSON file is too big to be able to import it to Redshift via COPY statement: the file needed to be split up in smaller chunks (by country)
+
+![COVID OWID Data Pre-Processing](./drawings/parse_owid_json.png)
+
+All these issues are fixed by running `/data_sources/owid/parse_owid_json.py ` on the raw data. The parsed and cleaned files are already included in the project. Therefore you don't need to re-run the script if you don't want to.
+
 ## Google Mobility Data
 
 ### File Format & Structure
 The dataset is provided as single CSV file in time series structure.
+The dataset has a size of `1,597,829 rows`.
 
 ### Field description
 Column|Description
@@ -88,7 +111,7 @@ Column|Description
 `country_region`|Country name.
 `sub_region_1`|possible principal subdivision (e.g. provinces or states).
 `sub_region_2`|possible principal subdivision (e.g. provinces or states).
-`iso_3166_2_code`|ISO codes for identifying the principal subdivisions (e.g. provinces or states) of all countries coded in ISO 3166-1.
+`iso_3166_2_code`|ISO codes for identifying the principal subdivisions (e.g. provinces or states) of all countries coded in ISO 3166-2.
 `census_fips_code`|US only. Federal Information Processing Standards code that uniquely identifies counties within the USA.
 `date`|Date in MM-DD-YYYY format.
 `retail_and_recreation_percent_change_from_baseline`|Mobility trends for places like restaurants, cafes, shopping centers, theme parks, museums, libraries, and movie theaters. Changes for each day are compared to a baseline value for that day of the week.
@@ -98,74 +121,63 @@ Column|Description
 `workplaces_percent_change_from_baseline`|Mobility trends for places of work. Changes for each day are compared to a baseline value for that day of the week.
 `residential_percent_change_from_baseline`|Mobility trends for residential places. Changes for each day are compared to a baseline value for that day of the week.
 
-## Worldwide COVID-19 dataset from the Air Quality Open Data Platform
+### Data Issues
+Despite some missing values this dataset has no issues and therefore needed no further pre-processing.
 
-### File Format & Structure
-The dataset is provided as single CSV file in time series structure.
+# Final Data Model
 
-### Field description
-Column|Description
-------|-----------
-`Date`|Date in MM-DD-YYYY format. UTC based.
-`Country`|ISO 3166-1 country code (2 character variant).
-`City`|City Name
-`Specie`|Type of data ranging from air pollutant species (PM2.5,PM10, Ozone ...) to meteorological data (Wind, Temperature, ...). All air pollutant species are converted to the US EPA standard (i.e. no raw concentrations).
-`count`|Number of samples used for calculating the median and standard deviation
-`min`|Min of all data samples
-`max`|Max of all data samples
-`median`|Median of all data samples
-`variance`|Standard deviation of all data samples
+## Schema
+As the given source datasets provide input for several fact tables I designed the following Galaxy Schema:
+
+![Final Data Model](./drawings/data_model.png)
+
+The main idea is to share the same dimension tables (date, country, region and subregion) between several fact tables. This provides the advantage of quicker query performance on single fact queries but still enables multi fact queries.
+
+## Dictionary
 
 
-# Data Model & Dictionary
-## Dimensions
-- Continent
-- Country with ISO references
-- State / Region (Country Sub 1)
-- City (Country Sub 2)
-- Time
-- AQI_level
 
-
-## Facts
-### covid_cases
-- serial id
-- date
-- confirmed_cases_jh
-- confirmed_cases_ovid
-- active_cases (= confirmed_cases - recovered_cases - deaths)
-- recovered_cases
-- deaths
-- tests
-- mortality_rate?
-- survival_rate?
-
-### covid_cases_aggregate (optional for query performance)
-- aggregate cases on Continent / Country / ...
-- aggregate cases on common time ranges
-
-### AQI_measurements
-- serial id
-- Date
-### Weather_events
-### Mobility
 
 # ETL & Architecture
+
+## Tools
+The following tools have been used to build up the ETL Architecture:
+- Python and SQL: to clean, process and transform the data
+- AWS S3: to store and read / import the raw data
+- AWS Redshift: to host the final data model tables, to import and stage the raw data, to insert the data into the the final tables
+The main reason for this light toolset is the controllable amount of data. The processing of the two main scripts is usually done below 2 mins with a cost efficient Redshift cluster consisting of 3 `dc2.large` nodes. From a cost and timing perspective this is more than acceptable for the given use case.
 
 ## Prerequisite: Geolocation Normalization
 In order to combine as much of the final data as possible based on location (country, region, city..) it is needed to have unique identifiers. Unfortunately not all source data tables are using the same standards like ISO or FIPS. Additionally the location names are not fully matching due to different notation or languages. To solve that problem I decided to introduce my own Reference Tables for the ISO Standards 3166-1 and 3166-2 which cover a wide range of countries and regions. To ensure a common naming and notation of location names I built a separate small ETL pipeline using the Google Maps Geocoding API:
 
 ![Geolocation Normalization Flow](./drawings/geocode_normalize_flow.png)
 
-First the ISO-3166-1 Reference Table (Source: Wikipedia) got normalized by using each value of the "Enlish Short Name" column as input for the Google Maps Geocoding API. The API response got used to enrich the Reference Table with a normalized country name and with coordinates. 
-The normalization of the ISO-3166-2 Table needed additionals steps. To ensure the Geocoding API delivers meaningful results it was not sufficient to use the location name (subdivision_name column) as the could be matches in different countries. To avoid this first a lookup of the country name based on the country_code column with the help of the already normalized ISO-3166-1 Reference Table was applied. Additionally the subdivision_name and the country name got combined in a new column which was used as input for the Geocoding API. The API response again got used to enrich the Reference Table with a normalized location name and with coordinates. As the source table contains roundabout 150 entries without a reference ID for the location this time also the place_id from the API response got used to ensure a complete unique ID coverage. 
+First the ISO-3166-1 Reference Table got normalized by using each value of the "English Short Name" column as input for the Google Maps Geocoding API. The API response got used to enrich the Reference Table with a normalized country name and with coordinates.
+The normalization of the ISO-3166-2 Table needed additional steps. To ensure the Geocoding API delivers meaningful results it was not sufficient to use the location name (subdivision_name column) as the could be matches in different countries. To avoid this first a lookup of the country name based on the country_code column with the help of the already normalized ISO-3166-1 Reference Table was applied. Additionally the subdivision_name and the country name got combined in a new column which was used as input for the Geocoding API. The API response again got used to enrich the Reference Table with a normalized location name and with coordinates. As the source table contains roundabout 150 entries without a reference ID for the location this time also the place_id from the API response got used to ensure a complete unique ID coverage.
 
 ![Geolocation Normalization Tables](./drawings/geocode_normalize_tables.png)
 
-## Data Sources
+## Import of Data Sources
 ![Data Sources Staging Tables](./drawings/data_sources.png)
 
-# Conclusion
+## Data Transformation
+
+## Data Quality Checks
+
+# Other Scenarios
+The project rubric requires to outline the approach under the following different scenarios:
+- The data is increased by 100x.
+- The pipelines should run on a daily basis by 7 am every day.
+- The database needs to be accessed by 100+ people.
+
+## Increased data
+
+## Daily Pipeline
+
+## Access for 100+ people
+
+
+# Run the Project
 To be fulfilled:
 The choice of tools, technologies, and data model are justified well.
 The write up includes an outline of the steps taken in the project.
