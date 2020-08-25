@@ -126,17 +126,11 @@ Despite some missing values this dataset has no issues and therefore needed no f
 
 # Final Data Model
 
-## Schema
 As the given source datasets provide input for several fact tables I designed the following Galaxy Schema:
 
 ![Final Data Model](./drawings/data_model.png)
 
-The main idea is to share the same dimension tables (date, country, region and subregion) between several fact tables. This provides the advantage of quicker query performance on single fact queries but still enables multi fact queries.
-
-## Dictionary
-
-
-
+The main idea is to share the same dimension tables (date, country, region and subregion) between several fact tables. This provides the advantage of quicker query performance on single fact queries but still enables multi fact queries to provide the needed time or location aggregation requested in the fictional project scope.
 
 # ETL & Architecture
 
@@ -148,7 +142,7 @@ The following tools have been used to build up the ETL Architecture:
 The main reason for this light toolset is the controllable amount of data. The processing of the two main scripts is usually done below 2 mins with a cost efficient Redshift cluster consisting of 3 `dc2.large` nodes. From a cost and timing perspective this is more than acceptable for the given use case.
 
 ## Prerequisite: Geolocation Normalization
-In order to combine as much of the final data as possible based on location (country, region, city..) it is needed to have unique identifiers. Unfortunately not all source data tables are using the same standards like ISO or FIPS. Additionally the location names are not fully matching due to different notation or languages. To solve that problem I decided to introduce my own Reference Tables for the ISO Standards 3166-1 and 3166-2 which cover a wide range of countries and regions. To ensure a common naming and notation of location names I built a separate small ETL pipeline using the Google Maps Geocoding API:
+In order to combine as much of the final data as possible based on location (country, region, ..) it is needed to have unique identifiers. Unfortunately not all source data tables are using the same standards like ISO or FIPS. Additionally the location names are not fully matching due to different notation or languages. To solve that problem I decided to introduce my own Reference Tables for the ISO Standards 3166-1 and 3166-2 which cover a wide range of countries and regions. To ensure a common naming and notation of location names I built a separate small ETL pipeline using the Google Maps Geocoding API:
 
 ![Geolocation Normalization Flow](./drawings/geocode_normalize_flow.png)
 
@@ -157,10 +151,19 @@ The normalization of the ISO-3166-2 Table needed additional steps. To ensure the
 
 ![Geolocation Normalization Tables](./drawings/geocode_normalize_tables.png)
 
+### Run the Normalization
+To run the normalization scripts your Python environment should have the following packages installed:
+- googlemaps
+- pandas
+Additionally you need to provide an API Key for the Google Maps Geocoding API. Please refer to the [Google Maps Developer Documentation](https://developers.google.com/maps/documentation/geocoding/get-api-key) to find out how you can get your API Key. As soon you have your key ready you need to enter it in the following configuration file: `ISO_Normalization/apikey.cfg`. Afterwards you can run `ISO_Normalization/normalize_iso3166-1.py` and `ISO_Normalization/normalize_iso3166-2.py`. The output will appear in `ISO_Normalization/ISO_out/`. The normalized files are already included in the project. Therefore you don't need to re-run the script if you don't want to.
+
 ## Import of Data Sources
+The data source import is performed with COPY statements that allow direct import from S3 storage. To achieve that the following staging and reference tables are created:
 ![Data Sources Staging Tables](./drawings/data_sources.png)
+The staging and reference tables are automatically dropped after a successful run of the ETL process.
 
 ## Data Transformation
+After the successful import of the staging and reference tables the given data gets transformed and inserted into the final tables.
 
 ## Data Quality Checks
 
@@ -176,13 +179,4 @@ The project rubric requires to outline the approach under the following differen
 
 ## Access for 100+ people
 
-
 # Run the Project
-To be fulfilled:
-The choice of tools, technologies, and data model are justified well.
-The write up includes an outline of the steps taken in the project.
-The purpose of the final data model is made explicit.
-The write up describes a logical approach to this project under the following scenarios:
-- The data was increased by 100x.
-- The pipelines would be run on a daily basis by 7 am every day.
-- The database needed to be accessed by 100+ people.
