@@ -139,6 +139,7 @@ The following tools have been used to build up the ETL Architecture:
 - Python and SQL: to clean, process and transform the data
 - AWS S3: to store and read / import the raw data
 - AWS Redshift: to host the final data model tables, to import and stage the raw data, to insert the data into the the final tables
+
 The main reason for this light toolset is the controllable amount of data. The processing of the two main scripts is usually done below 2 mins with a cost efficient Redshift cluster consisting of 3 `dc2.large` nodes. From a cost and timing perspective this is more than acceptable for the given use case.
 
 ## Prerequisite: Geolocation Normalization
