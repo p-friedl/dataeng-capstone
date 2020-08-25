@@ -336,6 +336,196 @@ dim_subregion_table_insert = (
            AND rfips.Consolidtated_City_Code = '00000');"""
           )
 
+fact_covid_tests_table_insert = (
+    """INSERT INTO fact_covid_tests (date, country_iso, tests_total, tests_new,
+                                     tests_new_smoothed, tests_unit)
+          (SELECT
+              o.date AS date,
+              c.id AS country_iso,
+              o.total_tests AS tests_total,
+              o.new_tests AS tests_new,
+              o.new_tests_smoothed AS tests_new_smoothed,
+              o.tests_units AS tests_unit
+           FROM staging_covid_owid o
+           JOIN dim_country c
+           ON (o.iso_code = c.id)
+           JOIN dim_date d
+           ON (o.date = d.date));"""
+           )
+
+fact_covid_response_table_insert = (
+    """INSERT INTO fact_covid_response (date, country_iso, stringency_index)
+          (SELECT
+              o.date AS date,
+              c.id AS country_iso,
+              o.stringency_index AS stringency_index
+           FROM staging_covid_owid o
+           JOIN dim_country c
+           ON (o.iso_code = c.id)
+           JOIN dim_date d
+           ON (o.date = d.date));"""
+           )
+
+fact_mobility_country_level_table_insert = (
+    """INSERT INTO fact_mobility_measurements
+       (date, country_iso, region_id, subregion_id,
+        retail_recreation_change_baseline, grocery_pharmacy_change_baseline,
+        parks_change_baseline, transit_stations_change_baseline,
+        workplaces_change_baseline, residential_change_baseline)
+          (SELECT
+              m.date as date,
+              iso.Alpha_3_code as country_iso,
+              'No Region' AS region_id,
+              'No Subregion' AS subregion_id,
+              m.retail_and_recreation_percent_change_from_baseline
+              AS retail_recreation_change_baseline,
+              m.grocery_and_pharmacy_percent_change_from_baseline
+              AS grocery_pharmacy_change_baseline,
+              m.parks_percent_change_from_baseline
+              AS parks_change_baseline,
+              m.transit_stations_percent_change_from_baseline
+              AS transit_stations_change_baseline,
+              m.workplaces_percent_change_from_baseline
+              AS workplaces_change_baseline,
+              m.residential_percent_change_from_baseline
+              AS residential_change_baseline
+           FROM staging_mobility m
+           JOIN ref_ISO3166_1 iso
+           ON (m.country_region_code = iso.Alpha_2_code)
+           JOIN dim_country c
+           ON (iso.Alpha_3_code = c.id)
+           JOIN dim_date d
+           ON (m.date = d.date)
+           WHERE m.iso_3166_2_code = '');"""
+           )
+
+fact_mobility_region_level_table_insert = (
+    """INSERT INTO fact_mobility_measurements
+       (date, country_iso, region_id, subregion_id,
+        retail_recreation_change_baseline, grocery_pharmacy_change_baseline,
+        parks_change_baseline, transit_stations_change_baseline,
+        workplaces_change_baseline, residential_change_baseline)
+          (SELECT
+              m.date as date,
+              iso.Alpha_3_code as country_iso,
+              m.iso_3166_2_code AS region_id,
+              'No Subregion' AS subregion_id,
+              m.retail_and_recreation_percent_change_from_baseline
+              AS retail_recreation_change_baseline,
+              m.grocery_and_pharmacy_percent_change_from_baseline
+              AS grocery_pharmacy_change_baseline,
+              m.parks_percent_change_from_baseline
+              AS parks_change_baseline,
+              m.transit_stations_percent_change_from_baseline
+              AS transit_stations_change_baseline,
+              m.workplaces_percent_change_from_baseline
+              AS workplaces_change_baseline,
+              m.residential_percent_change_from_baseline
+              AS residential_change_baseline
+           FROM staging_mobility m
+           JOIN ref_ISO3166_1 iso
+           ON (m.country_region_code = iso.Alpha_2_code)
+           JOIN dim_country c
+           ON (iso.Alpha_3_code = c.id)
+           JOIN dim_region r
+           ON (r.id = m.iso_3166_2_code)
+           JOIN dim_date d
+           ON (m.date = d.date)
+           WHERE SUBSTRING(m.iso_3166_2_code, 1, 3) != 'US-');"""
+           )
+
+fact_mobility_subregion_level_table_insert = (
+    """INSERT INTO fact_mobility_measurements
+       (date, country_iso, region_id, subregion_id,
+        retail_recreation_change_baseline, grocery_pharmacy_change_baseline,
+        parks_change_baseline, transit_stations_change_baseline,
+        workplaces_change_baseline, residential_change_baseline)
+          (SELECT
+              m.date as date,
+              sr.country_iso as country_iso,
+              sr.region_id AS region_id,
+              sr.id AS subregion_id,
+              m.retail_and_recreation_percent_change_from_baseline
+              AS retail_recreation_change_baseline,
+              m.grocery_and_pharmacy_percent_change_from_baseline
+              AS grocery_pharmacy_change_baseline,
+              m.parks_percent_change_from_baseline
+              AS parks_change_baseline,
+              m.transit_stations_percent_change_from_baseline
+              AS transit_stations_change_baseline,
+              m.workplaces_percent_change_from_baseline
+              AS workplaces_change_baseline,
+              m.residential_percent_change_from_baseline
+              AS residential_change_baseline
+           FROM staging_mobility m
+           JOIN dim_subregion sr
+           ON (m.census_fips_code = CONCAT(sr.region_id, sr.id))
+           JOIN dim_date d
+           ON (m.date = d.date));"""
+           )
+
+fact_covid_cases_country_level_table_insert = (
+    """INSERT INTO fact_covid_cases
+       (date, country_iso, region_id, subregion_id, cases_confirmed,
+        cases_active, deaths, recovered)
+          (SELECT
+              cov.Date as date,
+              c.id as country_iso,
+              'No Region' AS region_id,
+              'No Subregion' AS subregion_id,
+			  cov.Confirmed AS cases_confirmed,
+              cov.Active AS cases_active,
+              cov.Deaths AS deaths,
+              cov.Recovered AS recovered
+           FROM staging_covid_csse cov
+           JOIN dim_country c
+           ON (c.name = cov.Country_Region)
+           JOIN dim_date d
+           ON (cov.Date = d.date)
+           WHERE cov.Province_State = '');"""
+           )
+
+fact_covid_cases_region_level_table_insert = (
+    """INSERT INTO fact_covid_cases
+       (date, country_iso, region_id, subregion_id, cases_confirmed,
+        cases_active, deaths, recovered)
+          (SELECT
+              cov.Date as date,
+              r.country_iso as country_iso,
+              r.id AS region_id,
+              'No Subregion' AS subregion_id,
+			  cov.Confirmed AS cases_confirmed,
+              cov.Active AS cases_active,
+              cov.Deaths AS deaths,
+              cov.Recovered AS recovered
+           FROM staging_covid_csse cov
+           JOIN dim_region r
+           ON (r.name = cov.Province_State)
+           JOIN dim_date d
+           ON (cov.Date = d.date)
+           WHERE cov.Country_Region != 'US');"""
+           )
+
+fact_covid_cases_subregion_level_table_insert = (
+    """INSERT INTO fact_covid_cases
+       (date, country_iso, region_id, subregion_id, cases_confirmed,
+        cases_active, deaths, recovered)
+          (SELECT
+              cov.Date as date,
+              r.country_iso as country_iso,
+              r.region_id AS region_id,
+              r.id AS subregion_id,
+			  cov.Confirmed AS cases_confirmed,
+              cov.Active AS cases_active,
+              cov.Deaths AS deaths,
+              cov.Recovered AS recovered
+           FROM staging_covid_csse cov
+           JOIN dim_subregion r
+           ON (cov.FIPS = CONCAT(r.region_id, r.id))
+           JOIN dim_date d
+           ON (cov.Date = d.date));"""
+           )
+
 # QUERY LISTS
 create_table_queries = [staging_mobility_create,
                         staging_covid_owid_create,
@@ -385,4 +575,12 @@ insert_table_queries = [dim_date_table_insert,
                         dim_country_table_insert,
                         dim_region_table_iso_insert,
                         dim_region_table_fips_insert,
-                        dim_subregion_table_insert]
+                        dim_subregion_table_insert,
+                        fact_covid_cases_country_level_table_insert,
+                        fact_covid_cases_region_level_table_insert,
+                        fact_covid_cases_subregion_level_table_insert,
+                        fact_covid_tests_table_insert,
+                        fact_covid_response_table_insert,
+                        fact_mobility_country_level_table_insert,
+                        fact_mobility_region_level_table_insert,
+                        fact_mobility_subregion_level_table_insert]
