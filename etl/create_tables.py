@@ -11,6 +11,7 @@ def drop_tables(cur, conn):
     cur - DB connection cursor
     conn - DB connection object
     """
+    print("Drop possible existing tables")
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
@@ -25,7 +26,8 @@ def create_tables(cur, conn):
     conn - DB connection object
     """
     for query in create_table_queries:
-        cur.execute(query)
+        print(query['desc'])
+        cur.execute(query['q'])
         conn.commit()
 
 
