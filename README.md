@@ -176,7 +176,7 @@ In the future I foresee to implement another Google Maps Geocoding API Normaliza
 
 Overall I implemented two Data Quality Checks as required by the Project Rubric:
 - the first one is provided within the Data Schema / Table creation itself by enforcing that there are no NULL values on any Reference ID
-- the second one is provided at the end of the ETL process and compares the staging table row counts with their corresponding fact table row counts. Based on the description in the Data Transformation subchapter some row count losses for `fact_covid_tests`, `fact_covid_cases` and `fact_covid_response` are expected and normal to happen. But the row count check for `fact_mobility_measurements` is expected to pass. 
+- the second one is provided at the end of the ETL process and compares the staging table row counts with their corresponding fact table row counts. Based on the description in the Data Transformation subchapter some row count losses for `fact_covid_tests`, `fact_covid_cases` and `fact_covid_response` are expected and normal to happen. But the row count check for `fact_mobility_measurements` is expected to pass.
 
 # Other Scenarios
 The project rubric requires to outline the approach under the following different scenarios:
@@ -185,9 +185,12 @@ The project rubric requires to outline the approach under the following differen
 - The database needs to be accessed by 100+ people.
 
 ## Increased data
+In that case the currently used toolset will not be sufficient anymore as the huge amount of data would require a bigger Redshift cluster with nodes that provide better performance to ensure fast imports and better query performance. Therefore it is recommended to use Apache Spark as distributed computing environment and to keep the Redshift cluster cheap (the storage capacity should be sufficient). One option would be to use AWS EMR to have a fully managed Spark environment. The main parts of the scripts (SQL statements etc.) could be reused but some parts would need refactoring to make use of the Spark framework.
 
 ## Daily Pipeline
+To run the pipeline on a daily basis the usage of Apache Airflow is recommended. This gives the advantage that each run of the pipeline can be properly monitored and also put under SLAs. The main parts of the scripts (SQL statements etc.) could be reused but some parts would need refactoring to make use of the Spark framework. In addition to that a process to automatically pull the new daily data to S3 would be needed.
 
 ## Access for 100+ people
+To allow access for 100+ people the toolset needs no significant change. But the Redshift cluster should be scaled up to provide better query performance. In addition to that a data distribution strategy should be implemented. Another measure could be the slight redesign of the data model for example by applying more denormalization based on the must used queries of the users.
 
 # Run the Project
