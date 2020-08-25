@@ -1,3 +1,5 @@
 venv/
 .DS_Store
 data_sources/mobility/google_Global_Mobility_Report.csv
+etl/__pycache
+etl/sql_queries.pyc
